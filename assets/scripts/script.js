@@ -6,18 +6,46 @@ var button1 = document.createElement("button");
 var subtractWrongAnswer = 5;
 var subtractWrongAnswerWord = subtractWrongAnswer;
 let numberWords = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"];
+var questNumb = 0;
 var quizTime = 75;
 var audioRight = "./assets/sounds/tada.wav";
 var audioWrong = "./assets/sounds/Error.wav";
 var clickedStartPage = false;
 
-var topRowElement = document.createElement("section");
-var topRowLeftDivElement = document.createElement("div");
-var topRowRightDivElement = document.createElement("div");
+let questions = [
+  {
+    question: "Commonly used data types DO NOT Include",
+    correct: "alerts",
+    values: ["strings", "booleans", "alerts", "functions"]
+  },
+  {
+    question: "The condition in an if / else statement is enclosed within _____.",
+    correct: "parenthesis",
+    values: ["quotes", "curly brackets", "parenthesis", "square brackets"]
+  },
+  {
+    question: "Arrays in JavaScript can be used to store",
+    correct: "all of the above",
+    values: ["numbes and strings", "other arrays", "booleans", "all of the above"]
+  }, {
+    question: "String values must be enclosed within ______ when being assigned to variables",
+    correct: "quotes",
+    values: ["commas", "curly brackets", "quotes", "parentheses"]
+  },
+  {
+    question: "A very useful tool used during development and debugging for printing content to the debugger is:",
+    correct: "console.log",
+    values: ["JavaScript", "terminal/bash", "for loops", "console.log"]
+  }
+]
+
+const topRowElement = document.createElement("section");
+const topRowLeftDivElement = document.createElement("div");
+const topRowRightDivElement = document.createElement("div");
 // var cardElement = document.createElement("section");
+var footerText = " ";
 
 // Mainline Code
-// cardElement.setAttribute("class", "card")
 h1Element.setAttribute("class", "question");
 
 
@@ -28,12 +56,8 @@ do {
     if (subtractWrongAnswer <= numberWords.length) {
       subtractWrongAnswerWord = numberWords[subtractWrongAnswerWord];
     }
-    
-    // Top row with link and timer should be displayed on every page except for the high scores page
-    // var topRowElement = document.createElement("section");
-    // var topRowLeftDivElement = document.createElement("div");
-    // var topRowRightDivElement = document.createElement("div");
 
+    // Top row with link and timer should be displayed on every page except for the high scores page
     topRowElement.setAttribute("id", "topRow");
     topRowLeftDivElement.textContent = "View High Scores";
     topRowLeftDivElement.setAttribute("class", "topRowLeft");
@@ -51,11 +75,10 @@ do {
 // Start Page
 function displayStartPage() {
   console.log("displayStartPage called...");
-  var cardElement = document.createElement("section");
-  var cardBodyElement = document.createElement("p");
-  var cardFooterElement = document.createElement("div")
-  var startButton = document.createElement("button");
-  // h1Element.setAttribute("class", "question");
+  const cardElement = document.createElement("section");
+  const cardBodyElement = document.createElement("p");
+  const cardFooterElement = document.createElement("div")
+  const startButton = document.createElement("button");
   cardElement.setAttribute("class", "card");
   cardElement.setAttribute("id", "card");
   cardBodyElement.setAttribute("id", "card-body");
@@ -79,76 +102,66 @@ function displayStartPage() {
 // Start Quiz
 function startQuiz() {
   var timeEl = document.querySelector(".time");
+  questNumb = 0;
   clickedStartPage = true;
   console.log("Start Button Clicked.")
-  displayQuestion1();
+  displayQuestions();
 
   return;
 }
 
-// Question 1
-function displayQuestion1() {
-  console.log("displayQuestion1 called...");
-  var previousPage = document.getElementById("card")
+// Questions
+function displayQuestions() {
+  console.log("displayQuestions called...");
+  console.log("working on question: " + questNumb);
+  var previousPage = document.getElementById("card");
   previousPage.remove();
   console.log("removed previous page...");
-  var cardElement = document.createElement("section");
-  var cardBodyElement = document.createElement("div");
-  var buttonsUlElement = document.createElement("ul");
-  var buttonsLi1Element = document.createElement("li");
-  var buttonsLi2Element = document.createElement("li");
-  var buttonsLi3Element = document.createElement("li");
-  var buttonsLi4Element = document.createElement("li");
+  const cardElement = document.createElement("section");
+  const cardBodyElement = document.createElement("div");
+  const buttonsUlElement = document.createElement("ul");
 
   var cardFooterElement = document.createElement("div");
+  var button0 = document.createElement("button");
+  var button1 = document.createElement("button");
   var button2 = document.createElement("button");
   var button3 = document.createElement("button");
-  var button4 = document.createElement("button");
 
   cardElement.setAttribute("class", "card");
   cardElement.setAttribute("id", "card");
   cardBodyElement.setAttribute("class", "card-body");
-  cardBodyElement.setAttribute("id", "q1Buttons");
+  cardBodyElement.setAttribute("id", "answers");
   cardFooterElement.setAttribute("class", "card-footer");
-  button1.setAttribute("id", "btnStrings");
-  button1.setAttribute("data-value", "btnStrings");
-  button2.setAttribute("id", "btnBooleans");
-  button2.setAttribute("data-value", "btnBooleans");
-  button3.setAttribute("id", "btnAlerts");
-  button3.setAttribute("data-value", "btnAlerts");
-  button4.setAttribute("id", "btnFunctions");
-  button4.setAttribute("data-value", "btnFunctions");
-  button1.setAttribute("class", "btn");
-  button2.setAttribute("class", "btn");
-  button3.setAttribute("class", "btn");
-  button4.setAttribute("class", "btn");
-  h1Element.textContent = "Commonly used data types DO NOT Include";
-  button1.textContent = "strings";
-  button2.textContent = "booleans";
-  button3.textContent = "alerts";
-  button4.textContent = "functions";
+  h1Element.textContent = questions[questNumb].question;
   body.append(h1Element);
   body.append(cardElement);
   cardElement.append(cardBodyElement);
   cardBodyElement.append(buttonsUlElement);
-  buttonsUlElement.append(buttonsLi1Element);
-  buttonsLi1Element.append(button1);
-  buttonsUlElement.append(buttonsLi2Element);
-  buttonsLi2Element.append(button2);
-  buttonsUlElement.append(buttonsLi3Element);
-  buttonsLi3Element.append(button3);
-  buttonsUlElement.append(buttonsLi4Element);
-  buttonsLi4Element.append(button4);
+  // Loop through the answers and put them in a button
+  let i = 0;
+  questions[questNumb].values.forEach(answer => {
+    const buttonsLiElement = document.createElement("li");
+    var button = document.createElement("button");
+    button.setAttribute("id", "btn_" + answer);
+    button.setAttribute("data-value", answer);
+    button.setAttribute("class", "btn");
+    button.textContent = `${i+1}. ${answer}`;
+    buttonsLiElement.appendChild(button);
+    buttonsUlElement.appendChild(buttonsLiElement);
+    i++;
+  }
+  )
+  cardBodyElement.appendChild(buttonsUlElement);
   cardElement.append(cardFooterElement);
+  cardFooterElement.textContent = footerText;
 
-  var q1Buttons = document.querySelector("#q1Buttons");
-  q1Buttons.addEventListener("click", checkQuestion1);
-
+  var answers = document.querySelector("#answers");
+  answers.addEventListener("click", checkAnswer);
   return;
 }
 
-// Check Question 1
-function checkQuestion1(event) {
+// Check Answer
+function checkAnswer(event) {
   var element = event.target;
 
   if (element.matches("button")) {
@@ -156,125 +169,32 @@ function checkQuestion1(event) {
 
     console.log("Button Clicked = " + answer + ".");
 
-    if (answer !== "btnAlerts") {
+    if (answer !== questions[questNumb].correct) {
       // wrong answer
       console.log("Wrong Answer");
       new Audio(audioWrong).play();
-    }else {
+      quizTime -= subtractWrongAnswer;
+      topRowRightDivElement.textContent = `Time: ${quizTime}`;
+      footerText = `Wrong: ${questions[questNumb].question} ${answer}`;
+    } else {
       console.log("Right Answer");
       new Audio(audioRight).play();
+      footerText = "Correct!!!";
     }
-
-    displayQuestion2();
-  }
-  return;
-}
-
-// Question 2
-function displayQuestion2() {
-  console.log("displayQuestion2 called...");
-  var previousPage = document.getElementById("card")
-  previousPage.remove();
-  console.log("removed previous page...");
-  var cardElement = document.createElement("section");
-  var cardBodyElement = document.createElement("div");
-  var buttonsUlElement = document.createElement("ul");
-  var buttonsLi1Element = document.createElement("li");
-  var buttonsLi2Element = document.createElement("li");
-  var buttonsLi3Element = document.createElement("li");
-  var buttonsLi4Element = document.createElement("li");
-
-  var cardFooterElement = document.createElement("div");
-  var button1 = document.createElement("button");
-  var button2 = document.createElement("button");
-  var button3 = document.createElement("button");
-  var button4 = document.createElement("button");
-
-  cardElement.setAttribute("class", "card");
-  cardElement.setAttribute("id", "card");
-  cardBodyElement.setAttribute("class", "card-body");
-  cardBodyElement.setAttribute("id", "q2Buttons");
-  cardFooterElement.setAttribute("class", "card-footer");
-  button1.setAttribute("id", "btnQuotes");
-  button1.setAttribute("data-value", "btnQuotes");
-  button2.setAttribute("id", "btnCurly");
-  button2.setAttribute("data-value", "btnCurly");
-  button3.setAttribute("id", "btnParen");
-  button3.setAttribute("data-value", "btnParen");
-  button4.setAttribute("id", "btnSquare");
-  button4.setAttribute("data-value", "btnSquare");
-  button1.setAttribute("class", "btn");
-  button2.setAttribute("class", "btn");
-  button3.setAttribute("class", "btn");
-  button4.setAttribute("class", "btn");
-  h1Element.textContent = "The condition in an if / else statement is enclosed within _____.";
-  button1.textContent = "quotes";
-  button2.textContent = "curly brackets";
-  button3.textContent = "parenthesis";
-  button4.textContent = "square brackets";
-  // body.append(h1Element);
-  body.append(cardElement);
-  cardElement.append(cardBodyElement);
-  cardBodyElement.append(buttonsUlElement);
-  buttonsUlElement.append(buttonsLi1Element);
-  buttonsLi1Element.append(button1);
-  buttonsUlElement.append(buttonsLi2Element);
-  buttonsLi2Element.append(button2);
-  buttonsUlElement.append(buttonsLi3Element);
-  buttonsLi3Element.append(button3);
-  buttonsUlElement.append(buttonsLi4Element);
-  buttonsLi4Element.append(button4);
-  cardElement.append(cardFooterElement);
-
-  var q2button1 = document.querySelector("#q2Buttons");
-  q2button1.addEventListener("click", checkQuestion2);
-  
-  return;
-}
-
-// Check Question 2
-function checkQuestion2(event) {
-  var element = event.target;
-
-  if (element.matches("button")) {
-    var answer = element.getAttribute("data-value");
-    console.log("Button Clicked = " + answer + ".");
-
-    if (answer !== "btnParen") {
-      // wrong answer
-      console.log("Wrong Answer");
-      new Audio(audioWrong).play();
-    }else {
-      console.log("Right Answer");
-      new Audio(audioRight).play();
+    questNumb++;
+    if (questNumb < questions.length){
+      displayQuestions();
     }
-
-    displayQuestion3();
+    return;
   }
-  return;
 }
 
-// Question 3
-function displayQuestion3() {
-  return;
-}
+  // All Done
+  function displayAllDone() {
+    return;
+  }
 
-// Question 4
-function displayQuestion4() {
-  return;
-}
-
-// Question 5
-function displayQuestion5() {
-  return;
-}
-
-// All Done
-function displayAllDone() {
-  return;
-}
-
-// High Scores
-function displayHighScores() {
-  return;
-}
+  // High Scores
+  function displayHighScores() {
+    return;
+  }
