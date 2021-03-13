@@ -115,9 +115,3 @@ Verify links work:
 ```md
 Verify page layout and that all images display.
 ```
-
-```md
-Verify branding:
-    * The letters "seo" in Horiseon should be offset in a different color.
-```
-
