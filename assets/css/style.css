@@ -17,6 +17,14 @@ body {
   background-color: #f9fbfd;
 }
 
+.score-odd {
+  background-color: #69aff5;
+}
+
+.score-even {
+  background-color: #f9fbfd;
+}
+
 .wrapper {
   padding-top: 30px;
   padding-left: 20px;
@@ -30,12 +38,46 @@ body {
   color: hsl(180, 4%, 5%);
 }
 
+.topRowFlexContainer { 
+   
+  margin: 2px 10px;
+  display: flex;
+} 
+
 .topRowLeft {
   text-align: left;
+  flex-basis : 50%;
 }
 
 .topRowRight {
   text-align: right;
+  flex-basis : 50%;
+}
+
+.inlineFlexContainer { 
+   
+  margin: 6px 0px;
+  display: flex;
+} 
+
+.initsLeft {
+  text-align: left;
+  margin: 2px 0px 0px 0px;
+  padding-right: 6px;
+  /* flex-basis : 33%; */
+}
+
+.initsCenter {
+  text-align: left;
+  padding-right: 6px;
+  text-transform: uppercase;
+  /* flex-basis : 33%; */
+}
+
+.initsRight {
+  text-align: left;
+  padding-left: 6px;
+  /* flex-basis : 33%; */
 }
 
 .card {
@@ -58,6 +100,16 @@ body {
   height: 2px;
 }
 
+.card-answer-correct {
+  text-align: left;
+  color: green;
+}
+
+.card-answer-wrong {
+  text-align: left;
+  color: red;
+}
+
 .card-body {
   min-height: 100px;
 }
@@ -69,7 +121,12 @@ body {
   margin: 0 auto;
   padding: 0px 0px;
 }
+
 .card-footer {
+  text-align: center;
+}
+
+.card-result {
   text-align: center;
 }
 
@@ -96,14 +153,14 @@ body {
   color: hsl(0, 0%, 100%);
   display: inline-block;
   font-size: 12px;
-  line-height 12px;
+  line-height: 12px;
   margin: 16px 16px 16px 20px;
   padding: 5px 10px;
   text-align: center;
   cursor: pointer;
 }
 
-button[disabled] {
+btn[disabled] {
   cursor: default;
   background: #c0c7cf;
 }
@@ -111,28 +168,7 @@ button[disabled] {
 .float-right {
   float: right;
 }
-
-#password {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  border: none;
-  display: block;
-  width: 100%;
-  padding-top: 15px;
-  padding-left: 15px;
-  padding-right: 15px;
-  padding-bottom: 85px;
-  font-size: 1.2rem;
-  text-align: center;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  border: 2px dashed #c0c7cf;
-  border-radius: 6px;
-  resize: none;
-  overflow: hidden;
-}
-
+/* 
 @media (max-width: 690px) {
   .btn {
     font-size: 1rem;
@@ -149,4 +185,4 @@ button[disabled] {
   .btn {
     font-size: 0.8rem;
   }
-}
+} */
