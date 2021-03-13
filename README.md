@@ -2,15 +2,18 @@
 
 ## Description
 
-This project was to modify starter code to create an application that enables employees to generate random passwords based on criteria that they’ve selected. The app will run in the browser and will feature dynamically updated HTML and CSS powered by JavaScript code. It has a clean and polished, responsive user interface that adapts to multiple screen sizes.
+This project was to build a web app that will feature dynamically updated HTML and CSS powered by JavaScript code. The app will provide the user with a timed, multi-question, multiple choice quiz. The app must store high scores so that students can compare their scores.
 
 ```md
-The goal for the webpage is to allow the user to generate a random password based upon criteria below that the user can select:
-1. Length of password.
-2. Allow lowercase characters.
-3. Allow uppercase characters.
-4. Allow special characters.
-5. User must allow for at least one of critera 2-4.
+The app should operate within the following requirements:
+1. The quiz begins and a timer starts when the user clicks on the Start button.
+2. The user should be presented with a question and multiple choice answers.
+3. The user will be presented with the next question after selecting an answer.
+    * This will repeat until are questions are processed or the timer expires.
+4. The timer is reduced for each wrong answer.
+5. When all questions are answered or the timer expires the user is prompted to save their score.
+6. The user can view all high scores by selecting a link on any page or after submitting their score.
+7. If the user selects to view high scores from a question page they will be shown the high scores, the timer will not stop, and the user will then be returned to the question where they left.
 ```
 ## Table of Contents
 
@@ -40,10 +43,14 @@ The following steps should be used to install:
 ## Usage 
 
 Navigate to:
-[https://markhatthorinc.github.io/03-JavaScript/](https://markhatthorinc.github.io/03-JavaScript/)
+[https://markhatthorinc.github.io/03-JavaScript/](https://markhatthorinc.github.io/04-Web-APIs/)
 
-**Image of Site:**
-![Password Generator](./assets/images/PasswordGenerator.png)
+**Images of App:**
+![Start Page](./assets/images/CodeQuiz_StartPage.png)
+![Question](./assets/images/CodeQuiz_Question.png)
+![Next Question with Result](./assets/images/CodeQuiz_NextQuestionWithResult.png)
+![Save Score](./assets/images/CodeQuiz_SaveScore.png)
+![View High Scores](./assets/images/CodeQuiz_ViewHighScores.png)
 
 
 ## Credits
@@ -77,8 +84,8 @@ SOFTWARE.
 
 ## Badges
 
-![badgeGT](https://img.shields.io/static/v1?label=%3CGT%20Bootcamp%3E&message=03-JavaScript&color=blue)
-![badgeCourse](https://img.shields.io/static/v1?label=%3CCourse%20Work%3E&message=03-Homework&color=blue)
+![badgeGT](https://img.shields.io/static/v1?label=%3CGT%20Bootcamp%3E&message=04-Web-APIs&color=blue)
+![badgeCourse](https://img.shields.io/static/v1?label=%3CCourse%20Work%3E&message=04-Homework&color=blue)
 
 ## Features
 
@@ -91,17 +98,18 @@ There are no special features on this page.
 
 ```md
 Verify links work:
-1. Click on _Generate Password Button_
-2. You should be prompted for a password length
-    * Application should only accept values between 8 and 128
-3. You should be prompted whether to allow for lowercase
-    * Application should only accept any case sensitivity for: y, yes, n, or no
-4. You should be prompted whether to all for uppercase
-    * Application should only accept any case sensitivity for: y, yes, n, or no
-5. You should be prompted whether to all for special characters
-    * Application should only accept any case sensitivity for: y, yes, n, or no
-6. You must have selected at least one to allow for lowercase, uppercase, or special characters
-7. A random generated password should be displayed in the HTML box
+1. Click on _Start Quiz Button_
+2. You should be presented questions with multiple choice answers
+    * Click on the answer you think is correct
+3. Timer in right-hand corner of screen should be decrementing
+    * Wrong answers should have additional time deducted from the timer
+4. After all questions are answered you should be prompted to save your score
+5. After saving your score you should be shown all high scores.
+    * You can reset high scores by clicking on _Clear Highscores Button_
+    * You will be returned to the start page by clicking on _Go Back Button_
+6. At any time during the quiz you can view all high scores
+    * If timer was running it should continue to run
+    * Clicking on _Go Back Button_ should return you to the screen where you selected to view high scores
 ```
 
 ```md

@@ -17,6 +17,15 @@ body {
   background-color: #f9fbfd;
 }
 
+a {
+  color: black;
+  text-decoration: none;
+}
+
+a:hover {
+  color:darkorange;
+}
+
 .score-odd {
   background-color: #69aff5;
 }
@@ -58,25 +67,42 @@ body {
    
   margin: 6px 0px;
   display: flex;
+  /* height: 23px; */
 } 
 
 .initsLeft {
   text-align: left;
-  margin: 2px 0px 0px 0px;
+  margin-top: 16px;
   padding-right: 6px;
+  height: 23px;
   /* flex-basis : 33%; */
 }
 
 .initsCenter {
   text-align: left;
+  margin-top: 16px;
+  border-top-width: 1px;
+  border-left-width: 1px;
+  border-bottom-width: 1px;
+  border-right-width: 1px;
   padding-right: 6px;
   text-transform: uppercase;
+  height: 23px;
   /* flex-basis : 33%; */
 }
 
 .initsRight {
   text-align: left;
+  border-top-width: 0px;
+  border-left-width: 0px;
+  border-bottom-width: 0px;
+  border-right-width: 0px;
+  margin-top-width: 0px;
+  margin-left-width: 10px;
+  margin-bottom-width: 0px;
+  margin-right-width: 0px;
   padding-left: 6px;
+  height: 23px;
   /* flex-basis : 33%; */
 }
 
